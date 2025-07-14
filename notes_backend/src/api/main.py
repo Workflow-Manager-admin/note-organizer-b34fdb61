@@ -15,6 +15,15 @@ app = FastAPI(
     ]
 )
 
+import os
+
+# --- Run with: `python src/api/main.py` or by uvicorn. Default port 3001. ---
+if __name__ == "__main__":
+    import uvicorn
+
+    port = int(os.getenv("PORT", 3001))
+    uvicorn.run("src.api.main:app", host="0.0.0.0", port=port, reload=True)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
